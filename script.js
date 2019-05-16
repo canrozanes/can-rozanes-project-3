@@ -7,7 +7,6 @@ numberGame.generateRandomNumber = function (level){
     return Math.floor(10 ** (level - 1) + Math.random() * 9 * 10 ** (level - 1));
 }
 
-
 //generates the loading page of the game.
 numberGame.makeFrameZero = function(){
     return `<section class="frame0">
@@ -83,7 +82,7 @@ $(function() {
         //generate the frame that asks the user if they remember the number. timer will be placed on this frame. 
         $(".gameContainer").html(numberGame.makeFrameTwo(numberGame.level));
         //make sure the input is focused. 
-        $('.userField').focus();\
+        $('.userField').focus();
     })
     //when the user has the number typed in, they click submit
     $(".gameContainer").on("click", ".submit", function (){
