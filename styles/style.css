@@ -11,7 +11,7 @@ body{
 }
 
 *{
-    /* border: 1px solid black; */
+    border: 1px solid black;
 }
 
 .wrapper{
@@ -19,6 +19,9 @@ body{
     max-width: 1600px;
     margin: 0 auto;
 }
+section{
+    border: 1px solid black;
+    }
 
 section{
     display: flex;
@@ -45,4 +48,30 @@ form{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.frame1 .randomNumberContainer{
+    font-size: 25px;
+}
+
+.timeBarContainer{
+    width: 400px;
+    height: 20px;
+    background: blue;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.progressBar{
+    width: 398px;
+    height: 20px;
+    background: white;
+    border-radius: 50px;
+}
+
+.countdown{
+    padding-bottom: 50px;
 }

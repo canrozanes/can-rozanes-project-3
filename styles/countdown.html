@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="countdown"></div>
+    </p>
+    <!-- <progress value="0" max="10" id="progressBar"></progress> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script>
+    let makeTimer = function (timeLeft) {
+        $(".countdown").html(`${timeLeft} seconds remaining`);
+        let timer = setInterval(function () {
+            timeLeft = timeLeft - 1;
+            $(".countdown").html(`${timeLeft} seconds remaining`);
+            if (timeLeft <= 0) {
+                $(".countdown").html(`time is up`);
+                clearInterval(timer);
+            }
+        }, 1000);
+    }
+    console.log($('.countdown').text().indexOf('time is up'))
+    makeTimer(5)
+    
+    if ($('.countdown').text().indexOf('time is up')>-1) {
+        console.log('Hello');
+    }
+
+    </script>
+</body>
+</html>
