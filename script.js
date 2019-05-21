@@ -80,7 +80,7 @@ numberGame.makeFrameOne = function (){
     //display frameOne on the html
     $(".game-container").html(frameOne);
     //initialize a countdown the countdown that tells the user how much time they have left.
-    numberGame.makeTimer(numberGame.level+100);
+    numberGame.makeTimer(numberGame.level);
 }
 //generates the frame that asks the user if they remember the number and ask the user to input that number.
 numberGame.makeFrameTwo = function (){
