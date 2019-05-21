@@ -1,12 +1,12 @@
-//the object that host the entire app
+//declare the object that host the entire app
 const numberGame = {}
-//the variable that tracks the level of the game.
+//declare the variable that tracks the level of the game.
 numberGame.level = 0;
-//the variable that stores the random number generated for that level
+//declare the variable that stores the random number generated for each level
 numberGame.randNumber;
 
 
-//generates a random number with the size equal to the level of the game. first level, it generates a random number between 1 and 9, second level, it generates a random number from 10 to 99 and so on.
+//generates a random number with number of digits equal to the level of the game. first level, it generates a random number between 1 and 9, second level, it generates a random number from 10 to 99 and so on.
 numberGame.generateRandomNumber = function (level){
     return Math.floor(10 ** (level - 1) + Math.random() * 9 * 10 ** (level - 1));
 }
@@ -31,12 +31,15 @@ numberGame.makeTimer = function (timeLeft) {
         //reduce the width of the progress bar the size of the widthIncrement
         progressWidth = progressWidth - widthIncrement;
         //display timeLeft on the html
-        $countdown.html(`<p>${Math.round(timeLeft*10)/10} seconds remaining </p>`);
+        $countdown.html(`<p>${Math.round(timeLeft*10)/10}</p><p> seconds remaining </p>`);
         ///update the width of the progress bar on html
         $progressBar.width(`${progressWidth}%`);
+        //when timeLeft is less than 1 second, make seconds singular ie. second
+        if( timeLeft < 1){
+            $countdown.html(`<p>${Math.round(timeLeft * 10) / 10}</p><p> second remaining </p>`);
+        }
         //when width of the progress bar is zero, clearInterval and move to the next frame.
         if (progressWidth <= 0) {
-            // $(".countdown").html(`time is up`);
             clearInterval(timer);
             numberGame.makeFrameTwo();
         }
@@ -49,7 +52,7 @@ numberGame.makeFrameZero = function(){
     let frameZero = `<section class="frame0">
                         <div>
                             <h2>Getting Started</h2>
-                            <p>Average human can remember a number upto 7 digits. How many can you remember?</p>
+                            <p>Average human can remember a number up to 7 digits. How many can you remember?</p>
                         </div>
                         <label for="start" class="visually-hidden">Start the Game</label>
                         <button type="button" name="start" class="load-next-level button">Start</button>
@@ -74,9 +77,10 @@ numberGame.makeFrameOne = function (){
                             </div>
                         </div>
                     </section>`;
+    //display frameOne on the html
     $(".game-container").html(frameOne);
-    //initialize a countdown that tells the user how much time they have left
-    numberGame.makeTimer(numberGame.level);
+    //initialize a countdown the countdown that tells the user how much time they have left.
+    numberGame.makeTimer(numberGame.level+100);
 }
 //generates the frame that asks the user if they remember the number and ask the user to input that number.
 numberGame.makeFrameTwo = function (){
@@ -84,41 +88,46 @@ numberGame.makeFrameTwo = function (){
                         <h2>Level ${numberGame.level}: Can you remember the Number?</h2>
                         <form action="">
                             <label for="name" class="visually-hidden">Enter your memorized number </label>
-                            <input type="number" class="userField" name="number" required placeholder="Enter your number">
+                            <input type="number" class="user-field" name="number" required placeholder="Enter your number">
                             <label for="submit" class="visually-hidden">Submit the number</label>
                             <button type="submit" name="submit" class="submit button">Submit</button>
                         </form>
                     </section>`;
+    //display frameTwo on the html
     $(".game-container").html(frameTwo);
-    $('.userField').focus(); 
+    //focus on the form for accesibility
+    $('.user-field').focus(); 
 }
 //generates the frame that tells the user that they got the number right. 
 numberGame.makeFrameThree = function (userNumber){
     let frameThree =`<section class="frame3">
                         <h2>Level ${numberGame.level}: You got it right!</h2>
-                        <h3>The Actual Number was:</h3>
-                        <p>${numberGame.randNumber}</p>
-                        <h3>Your answer was:</h3>
-                        <p>${userNumber}</p>
+                        <h3>The Number was:</h3>
+                        <p class="number-container">${numberGame.randNumber}</p>
                         <label for="next" class="visually-hidden">Go to next level</label>
                         <button type="button" name="next" class="load-next-level button">Next</button>
-                        
                     </section>`;
+    //display frameThree on the html
     $(".game-container").html(frameThree);
+    $(".frame3").show("slow");
+    //focus on the button for accesibility
     $('.load-next-level').focus();
 }
 //generates the frame that tells the user they got the number wrong and the game is over.
 numberGame.makeFrameFour = function (userNumber){
     let frameFour = `<section class="frame4">
                         <h2 class="result">Level ${numberGame.level}: Game Over!</h2>
-                        <h3>The Actual Number was:</h3>
-                        <p>${numberGame.randNumber}</p>
+                        <h3>The Actual Number Was:</h3>
+                        <p class="number-container">${numberGame.randNumber}</p>
                         <h3>Your Answer Was:</h3>
-                        <p>${userNumber}</p>
+                        <p class="number-container">${userNumber}</p>
                         <label for="again" class="visually-hidden">Play Again</label>
                         <button type="button" name="again" class="startOver button">Start Over</button>
                     </section>`;
+    //display frameFour on the html
     $(".game-container").html(frameFour);
+    $(".frame4").show("slow");
+    //focus on the button for accesibility
     $('.startOver').focus();
 }
 
@@ -132,16 +141,16 @@ $(function() {
     })
     //when the user has the number typed in, they click submit
     $(".game-container").submit(function (e){
-    e.preventDefault();
-
-        //form return the number as a string. using parseInt, the program converts that to a number.
-        let userNumber = parseInt($(".userField").val(),10);
+        //overwrite the default behaviour that refreshes the page.
+        e.preventDefault();
+        //form returns the number as a string. using parseInt, the program converts that to a number.
+        let userNumber = parseInt($(".user-field").val(),10);
         
+        //if userNumber is equal to the number generated:
         if (userNumber === numberGame.randNumber){
             //load frame three - You got it right!
             numberGame.makeFrameThree(userNumber);
         }
-
         else{
             //load frame four - Game Over!
             numberGame.makeFrameFour(userNumber);
@@ -155,13 +164,12 @@ $(function() {
                 $(".result").after(`<p>Your last succesful level was ${numberGame.level - 1}. You are either a super human or you cheated. Either way, congratulations!</p>`);
         }
     })
-    
-
+    //let the user start over if they want to.
     $(".game-container").on("click", ".startOver", function () {
+        //initialize the game by setting game level as 0.
         numberGame.level = 0;
+        //load the first frame of the game.
         numberGame.makeFrameZero(); 
     })
-
-
 })
 

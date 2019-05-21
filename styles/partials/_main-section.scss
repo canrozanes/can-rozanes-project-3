@@ -1,0 +1,21 @@
+section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 50vh;
+}
+
+section p{
+    text-align: center;
+}
+
+.frame0 p{
+    text-align: center;
+    padding-top: 25px;
+}
+@media(max-width: 700px){
+    section{
+        height: 60vh;
+    }
+}

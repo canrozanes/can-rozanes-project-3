@@ -1,0 +1,38 @@
+.random-number-container {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    font-size: 2.2rem;
+}
+.random-number-container p {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.number-container{
+    font-size: 2.2rem;
+}
+
+
+@media(max-width: 900px){
+    .random-number-container {
+        font-size: 1.8rem;
+    }
+    .number-container{
+        font-size: 1.8rem;
+    }
+}
+@media(max-width: 600px){
+    .random-number-container {
+        font-size: 1.4rem;
+    }
+    .number-container{
+        font-size: 1.4rem;
+    }
+}

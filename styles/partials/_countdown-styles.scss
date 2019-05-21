@@ -1,0 +1,81 @@
+.progress-bar, 
+.time-bar-container{
+    width: 400px;
+    height: 20px;
+    border-radius: 20px;
+}
+
+.progress-bar{
+    background: #ffd344;
+}
+
+.time-bar-container{
+    background: white;
+    border: 1px solid white;
+    box-sizing: content-box;
+
+}
+.countdown{
+    display: flex;
+    color: white;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px;
+    p{
+        margin: 0;
+        padding: 0;
+        &:first-child{
+            text-align: right;
+            width: 40%;
+        }
+        &:last-child{
+            text-align: left;
+            padding-left: 10px;
+            width: 60%;
+        }
+    }
+}
+
+
+.time{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 25px;
+}
+
+
+@media(max-width: 600px){
+    .time{
+        width: 100%;
+        .progress-bar, 
+        .time-bar-container{
+            width: 100%;
+        }
+    }
+    .countdown{
+        p{
+            &:first-child{
+                text-align: right;
+                width: 30%;
+            }
+            &:last-child{
+                text-align: left;
+                padding-left: 10px;
+                width: 70%;
+            }
+        }
+    }
+}
+@media(max-width: 400px){
+    .countdown p{
+        &:first-child{
+            width: 25%;
+        }
+        &:last-child{
+            width: 75%;
+        }
+    }
+}
