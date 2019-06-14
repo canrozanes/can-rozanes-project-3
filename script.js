@@ -172,4 +172,3 @@ $(function() {
         numberGame.makeFrameZero(); 
     })
 })
-
