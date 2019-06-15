@@ -68,7 +68,8 @@ numberGame.makeFrameOne = function (){
     numberGame.randNumber = numberGame.generateRandomNumber(numberGame.level);
 
     let frameOne = `<section class="frame1">
-                        <h2>Level ${numberGame.level}: Memorize the Number</h2>
+                        <h2>Level ${numberGame.level} </h2> 
+                        <h3> Memorize the Number</h3>
                         <p class="random-number-container">${numberGame.randNumber}</p>
                         <div class="time">
                             <div class="countdown"></div>
@@ -85,7 +86,8 @@ numberGame.makeFrameOne = function (){
 //generates the frame that asks the user if they remember the number and ask the user to input that number.
 numberGame.makeFrameTwo = function (){
     let frameTwo =  `<section class="frame2">
-                        <h2>Level ${numberGame.level}: Can you remember the Number?</h2>
+                        <h2>Level ${numberGame.level}</h2>
+                        <h3>Can you remember the Number?</h3>
                         <form action="">
                             <label for="name" class="visually-hidden">Enter your memorized number </label>
                             <input type="number" class="user-field" name="number" required placeholder="Enter your number">
@@ -101,7 +103,8 @@ numberGame.makeFrameTwo = function (){
 //generates the frame that tells the user that they got the number right. 
 numberGame.makeFrameThree = function (userNumber){
     let frameThree =`<section class="frame3">
-                        <h2>Level ${numberGame.level}: You got it right!</h2>
+                        <h2>Level ${numberGame.level}</h2>
+                        <h3>You got it right!</h3>
                         <h3>The Number was:</h3>
                         <p class="number-container">${numberGame.randNumber}</p>
                         <label for="next" class="visually-hidden">Go to next level</label>
@@ -116,7 +119,8 @@ numberGame.makeFrameThree = function (userNumber){
 //generates the frame that tells the user they got the number wrong and the game is over.
 numberGame.makeFrameFour = function (userNumber){
     let frameFour = `<section class="frame4">
-                        <h2 class="result">Level ${numberGame.level}: Game Over!</h2>
+                        <h2>Level ${numberGame.level}</h2> 
+                        <h3 class="result">Game Over!</h3>
                         <h3>The Actual Number Was:</h3>
                         <p class="number-container">${numberGame.randNumber}</p>
                         <h3>Your Answer Was:</h3>

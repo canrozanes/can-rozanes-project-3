@@ -11,7 +11,7 @@
 
 .time-bar-container{
     background: white;
-    border: 1px solid white;
+    border: 1px solid #8acb88;
     box-sizing: content-box;
 
 }
@@ -51,7 +51,7 @@
         width: 100%;
         .progress-bar, 
         .time-bar-container{
-            width: 100%;
+            width: 95%;
         }
     }
     .countdown{
